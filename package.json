@@ -1,0 +1,13 @@
+{
+  "name": "solarselect",
+  "private": true,
+  "type": "module",
+  "description": "Solar and battery rebate quiz, state pages and calculators, with leads sent to Pipedrive and your own CRM.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node build.mjs",
+    "preview": "node build.mjs --preview",
+    "test": "node --test test/lead.test.mjs",
+    "dev": "netlify dev"
+  }
+}
