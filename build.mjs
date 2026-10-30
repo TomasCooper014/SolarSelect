@@ -32,7 +32,8 @@ function makeLink(fromPath) {
   L.root = root;
   return L;
 }
-const logo = `<svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="6" fill="var(--sun)"/><g stroke="var(--sun)" stroke-width="2.2" stroke-linecap="round"><path d="M15 3v3M15 24v3M3 15h3M24 15h3M6.5 6.5l2.1 2.1M21.4 21.4l2.1 2.1M6.5 23.5l2.1-2.1M21.4 8.6l2.1-2.1"/></g><path d="M3 27 15 19l12 8" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linejoin="round"/></svg>`;
+const logo = `<svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" rx="8" fill="var(--teal)"/><circle cx="17" cy="15.5" r="6.5" fill="var(--sun)"/><path d="M6 22.5h22" stroke="var(--teal-ink)" stroke-width="2.4" stroke-linecap="round"/><path d="M9 22.5v3.5M13 22.5v2M17 22.5v3.5M21 22.5v2M25 22.5v3.5" stroke="var(--teal-ink)" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+const wordmark = `<span class="wordmark"><span class="wm-the">The</span> Solar Standard</span>`;
 
 function layout({ path, title, description, body, landing = false, noindex = false, jsonld = "" }, L) {
   const canonical = brand.domain + "/" + path;
@@ -40,15 +41,15 @@ function layout({ path, title, description, body, landing = false, noindex = fal
   const gtag = brand.googleTagId && !PREVIEW ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${brand.googleTagId}"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${brand.googleTagId}');</script>` : "";
   const site = { brand: brand.name, phone: brand.phone, root: L.root, pretty: !PREVIEW, preview: PREVIEW, yields: yieldPerKw };
   const head = landing
-    ? `<header class="site-head lp-head"><div class="wrap"><span class="logo">${logo}${esc(brand.name)}</span><span class="small muted">Questions? <b>${esc(brand.phone)}</b></span></div></header>`
-    : `<header class="site-head"><div class="wrap"><a class="logo" href="${L("")}">${logo}${esc(brand.name)}</a>
-      <nav class="nav" aria-label="Main"><a href="${L("rebates/")}">Rebates</a><a href="${L("tools/")}">Calculators</a><a href="${L("guides/")}">Guides</a><a href="${L("how-it-works/")}">How it works</a><a class="btn btn-small" href="${L("rebate-quiz/")}" data-keep-tags>See my rebate</a></nav></div></header>`;
+    ? `<header class="site-head lp-head"><div class="wrap"><span class="logo">${logo}${wordmark}</span><span class="small muted">Questions? <b>${esc(brand.phone)}</b></span></div></header>`
+    : `<header class="site-head"><div class="wrap"><a class="logo" href="${L("")}">${logo}${wordmark}</a>
+      <nav class="nav" aria-label="Main"><a href="${L("rebates/")}">Rebates</a><a href="${L("tools/")}">Calculators</a><a href="${L("guides/")}">Guides</a><a href="${L("the-standard/")}">The Standard</a><a href="${L("how-it-works/")}">How it works</a><a class="btn btn-small" href="${L("rebate-quiz/")}" data-keep-tags>See my rebate</a></nav></div></header>`;
   const foot = `<footer class="site-foot"><div class="wrap">
     ${landing ? "" : `<div><h3>Rebates</h3><ul>${CODES.map((c) => `<li><a href="${L("rebates/" + stateInfo[c].slug + "/")}">${R.states[c]}</a></li>`).join("")}</ul></div>
     <div><h3>Calculators</h3><ul><li><a href="${L("tools/stc-calculator/")}">STC rebate calculator</a></li><li><a href="${L("tools/battery-rebate-calculator/")}">Battery rebate calculator</a></li><li><a href="${L("tools/solar-savings-calculator/")}">Solar savings calculator</a></li></ul></div>
     <div><h3>Guides</h3><ul>${guides.map((g) => `<li><a href="${L("guides/" + g.slug + "/")}">${esc(g.short)}</a></li>`).join("")}</ul></div>`}
-    <div><h3>${esc(brand.name)}</h3><ul><li><a href="${L("how-it-works/")}">How it works and how we're paid</a></li><li><a href="${L("privacy/")}">Privacy policy</a></li><li><a href="${L("collection-statement/")}">Collection statement</a></li><li><a href="${L("terms/")}">Terms of use</a></li><li>${esc(brand.email)}</li></ul></div>
-    <div class="foot-legal"><span>${esc(brand.name)} is operated by ${esc(brand.legalName)}, ABN ${esc(brand.abn)}. We are a marketing service, not a solar retailer or installer. Partner installers pay us for each introduction.</span><span>Rebate figures are estimates as at ${R.asAt}. Your installer confirms the exact amount after assessing your home.</span></div>
+    <div><h3>${esc(brand.name)}</h3><ul><li><a href="${L("the-standard/")}">The Solar Standard checklist</a></li><li><a href="${L("how-it-works/")}">How it works and how we're paid</a></li><li><a href="${L("privacy/")}">Privacy policy</a></li><li><a href="${L("collection-statement/")}">Collection statement</a></li><li><a href="${L("terms/")}">Terms of use</a></li><li>${esc(brand.email)}</li></ul></div>
+    <div class="foot-legal"><span>${esc(brand.name)} is operated by ${esc(brand.legalName)}, ABN ${esc(brand.abn)}. We are a marketing service, not a solar retailer or installer. Partner installers pay us for each introduction.</span><span>The Solar Standard is a private business. It is not a government body and is not affiliated with or endorsed by Standards Australia. References to AS/NZS standards describe the requirements we ask partner installers to meet.</span><span>Rebate figures are estimates as at ${R.asAt}. Your installer confirms the exact amount after assessing your home.</span></div>
   </div></footer>`;
   return `<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
@@ -71,7 +72,7 @@ ${foot}
 
 const countdown = `<span class="countdown"><span>Battery rebate steps down 1 January 2027</span><span><span class="num" data-countdown>soon</span> to go</span></span>`;
 const quizCard = (attrs = "") => `<div class="quiz" data-quiz ${attrs} aria-live="polite"><noscript>Turn on JavaScript to use the rebate quiz, or call ${esc(brand.phone)}.</noscript></div>`;
-const trust = `<ul class="trust"><li>Takes about 60 seconds</li><li>One installer contacts you, not five</li><li>Accredited installers only</li></ul>`;
+const trust = `<ul class="trust"><li>Takes about 60 seconds</li><li>One installer contacts you, not five</li><li>Installers held to The Solar Standard</li></ul>`;
 
 function examples(code) {
   const zone = code === "VIC" || code === "TAS" ? 4 : code === "NT" ? 2 : 3;
@@ -99,14 +100,17 @@ page("", (L) => layout({
   path: "", title: `${brand.name} | Solar and Battery Rebate Check`, description: brand.tagline,
   body: `<section class="hero"><div class="wrap"><div class="hero-copy">
     ${countdown}
-    <h1>See what the government will put towards your solar and battery</h1>
-    <p class="lead">Answer six quick questions and see your federal and state rebates worked out for your postcode. Then one accredited local installer gives you a free written quote.</p>
+    <h1>Hold your solar quote to a higher standard</h1>
+    <p class="lead">See your federal and state rebates worked out for your postcode in about 60 seconds. Then one installer who meets The Solar Standard gives you a free, itemised written quote.</p>
     ${trust}</div>${quizCard()}</div></section>
   <section class="section band"><div class="wrap"><div class="section-head"><p class="eyebrow">How it works</p><h2>Three steps, one phone call</h2></div>
     <ol class="steps"><li><h3>Check your rebate</h3><p class="muted">We work out your STC zone from your postcode and estimate the federal and state rebates on a system sized for your bill.</p></li>
     <li><h3>We introduce one installer</h3><p class="muted">Your details go to one accredited installer that covers your area. Not three, not five.</p></li>
     <li><h3>Get a written quote</h3><p class="muted">They call to confirm your roof and switchboard, then send a written quote with the rebates shown as line items. You decide in your own time.</p></li></ol></div></section>
   <section class="section"><div class="wrap stack-lg">
+    <div class="stack"><div class="section-head"><p class="eyebrow">The Solar Standard</p><h2>Six things every solar quote should meet</h2><p class="muted">Use it on any quote, from us or anyone else.</p></div>
+      <ul class="std-list">${STANDARD.map((x) => `<li><h3>${esc(x.title)}</h3><p class="muted small">${esc(x.short)}</p></li>`).join("")}</ul>
+      <p><a href="${L("the-standard/")}">Read the full checklist</a></p></div>
     <div class="stack"><div class="section-head"><p class="eyebrow">Rebates by state</p><h2>What's on offer where you live</h2><p class="muted">The federal rebates apply everywhere. Victoria and WA add their own on top.</p></div>
       <div class="statebar">${CODES.map((c) => `<a href="${L("rebates/" + stateInfo[c].slug + "/")}">${c}</a>`).join("")}</div></div>
     <div class="stack"><div class="section-head"><p class="eyebrow">Calculators</p><h2>Run the numbers yourself</h2></div>
@@ -258,6 +262,28 @@ for (const g of guides) {
   }, L));
 }
 
+const STANDARD = [
+  { title: "Accredited installer", short: "The person designing and signing off your system holds current Solar Accreditation Australia (SAA) accreditation.", body: "Ask for the installer's SAA accreditation number and check it on the SAA website. Without it, your system can't claim the federal STC or battery rebates." },
+  { title: "Approved products", short: "Panels, inverter and battery are on the Clean Energy Council approved lists.", body: "Only listed products are eligible for the federal rebates. The quote should name the exact model of each, not just a brand." },
+  { title: "Installed to the Australian standards", short: "AS/NZS 5033 for solar, AS/NZS 4777 for grid connection and AS/NZS 5139 for batteries.", body: "These are the installation standards electricians work to. Your installer should confirm the system will be installed and certified to them, and you should receive an electrical safety certificate when it's done." },
+  { title: "Itemised written quote", short: "System price, STC discount, state rebate and what you pay, each on its own line.", body: "One total hides what's included. A quote that meets the standard lists every component by model and shows each rebate separately, so you can compare it with any other quote." },
+  { title: "A warranty you can use", short: "A written workmanship warranty from a business with a real trading history.", body: "Product warranties come from the manufacturer. The workmanship warranty comes from the installer and only lasts as long as they do, so check their ABN and how long they've traded." },
+  { title: "No pressure", short: "No deadline that isn't real, and your full cooling-off rights explained.", body: "Federal rebates step down on set dates, which is real and worth knowing. A salesperson inventing a deadline isn't. Agreements signed at home usually carry a 10 business day cooling-off period under the Australian Consumer Law." }
+];
+
+page("the-standard/", (L) => layout({
+  path: "the-standard/", title: `The Solar Standard Checklist`, description: "Six things every solar and battery quote should meet, and the bar we hold our partner installers to.",
+  body: `<div class="wrap"><div class="article"><div class="article-body">
+    <p class="crumbs"><a href="${L("")}">Home</a> / The Standard</p>
+    <h1>The Solar Standard</h1>
+    <p class="lead-sm">Six things every solar and battery quote should meet. It's the bar we hold our partner installers to, and you can use it on any quote you get.</p>
+    <ol class="std-full">${STANDARD.map((x) => `<li><h2>${esc(x.title)}</h2><p><b>${esc(x.short)}</b></p><p class="muted">${esc(x.body)}</p></li>`).join("")}</ol>
+    <h2>How we use it</h2>
+    <p>Before we introduce an installer, we check their SAA accreditation, ABN and trading history, and their Google reviews. Partners agree in writing to quote and install to this standard. If a homeowner tells us a partner didn't, we look into it, and partners who stop meeting the standard stop receiving enquiries.</p>
+    <div class="callout">The Solar Standard is our own checklist. It isn't an Australian Standard, a government scheme or a certification. The AS/NZS standards named above are published by Standards Australia; we refer to them so you know what to ask for.</div>
+  </div><aside class="article-aside"><p class="eyebrow">Your rebate</p>${quizCard()}</aside></div></div>`
+}, L));
+
 page("how-it-works/", (L) => layout({
   path: "how-it-works/", title: `How ${brand.name} Works`, description: `How ${brand.name} matches you with one installer, and how we're paid.`,
   body: `<div class="wrap"><div class="article"><div class="article-body">
@@ -268,7 +294,7 @@ page("how-it-works/", (L) => layout({
     <h2>How we're paid</h2>
     <p>Installer partners pay us for each introduction. You never pay us. Because each area has one partner, your details are not sold to several companies at once.</p>
     <h2>Who we work with</h2>
-    <p>Our partners install with Solar Accreditation Australia (SAA) accredited installers and quote products on the Clean Energy Council's approved lists, which is what the federal rebates require.</p>
+    <p>We only introduce installers who agree to meet <a href="${L("the-standard/")}">The Solar Standard</a>: SAA-accredited installers, products on the Clean Energy Council approved lists, installation to the relevant AS/NZS standards, and itemised written quotes. If a partner stops meeting it, we stop sending them enquiries.</p>
     <h2>Your choice</h2><p>A quote is free and doesn't commit you to anything. You're welcome to get other quotes too.</p>
   </div><aside class="article-aside">${quizCard()}</aside></div></div>`
 }, L));

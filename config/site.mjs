@@ -1,14 +1,14 @@
 // Everything brand-specific lives here. Change the name, domain and contact
 // details once and rebuild; every page picks them up.
 export const brand = {
-  name: "PowerReview",
-  short: "PowerReview",
-  domain: "https://powerreview.com.au", // used for canonical links and the sitemap; change if you register a different domain
-  email: "hello@powerreview.com.au",
+  name: "The Solar Standard",
+  short: "Solar Standard",
+  domain: "https://thesolarstandard.com.au", // canonical links and sitemap
+  email: "hello@thesolarstandard.com.au",
   phone: "1300 000 000",
   abn: "00 000 000 000",              // the ABN of the entity that operates the site
   legalName: "Ghost Sales Agency Pty Ltd", // shown in the privacy policy and footer; confirm this is the operating entity
-  tagline: "See your solar and battery rebate, then get one quote from an accredited local installer.",
+  tagline: "See your solar and battery rebate, then get one written quote from an installer who meets The Solar Standard.",
   metaPixelId: "",                    // e.g. "1234567890"; leave empty to turn the pixel off
   googleTagId: ""                     // e.g. "G-XXXXXXX" or "AW-XXXXXXX"
 };

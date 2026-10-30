@@ -1,4 +1,4 @@
-# PowerReview
+# The Solar Standard
 
 A rebate-quiz lead funnel in the style of WHY Solar: state rebate pages, calculators and guides for
 Google, state landing pages for Meta and Google ads, and a quiz that sends each lead to Pipedrive

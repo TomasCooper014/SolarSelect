@@ -19,3 +19,17 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=3600"
+
+# Short domain and www forward to the main address. Add solarstandard.com.au
+# as a domain alias in Netlify for these to take effect.
+[[redirects]]
+  from = "https://solarstandard.com.au/*"
+  to = "https://thesolarstandard.com.au/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.solarstandard.com.au/*"
+  to = "https://thesolarstandard.com.au/:splat"
+  status = 301
+  force = true
