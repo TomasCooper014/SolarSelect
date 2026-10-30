@@ -101,7 +101,7 @@ export async function postToCrm(type, payload) {
 export async function sendConfirmation(lead, meta) {
   const key = env("RESEND_API_KEY");
   if (!key) return { skipped: "RESEND_API_KEY not set" };
-  const brand = env("BRAND_NAME") || "SolarSelect";
+  const brand = env("BRAND_NAME") || "PowerReview";
   const from = env("EMAIL_FROM") || `${brand} <hello@example.com>`;
   const lines = lead.estimateLines.map((l) => `<tr><td style="padding:6px 0">${esc(l.label)}</td><td style="padding:6px 0;text-align:right;font-family:monospace">$${Math.round(l.amount).toLocaleString("en-AU")}</td></tr>`).join("");
   const html = `<div style="font-family:Arial,sans-serif;max-width:560px;color:#14262c;line-height:1.5">
