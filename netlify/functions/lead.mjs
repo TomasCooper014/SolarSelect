@@ -41,8 +41,10 @@ export async function handleLead(req) {
   ]);
 
   // If nothing at all stored the lead, tell the browser so the person can call instead
-  const stored = leadId || results.crm?.ok;
-  if (!stored && !results.pipedrive?.skipped && !results.crm?.skipped) {
+  // Renters are deliberately not stored in Pipedrive; every other lead must land somewhere
+  const stored = leadId || results.crm?.ok || (meta.grade === "R" && !sendRenters);
+  if (!stored) {
+    console.error("lead not stored", JSON.stringify({ pipedrive: results.pipedrive, crm: results.crm }));
     return json(502, { error: "We couldn't save your details just now. Please try again in a minute, or call us.", results });
   }
 

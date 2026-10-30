@@ -102,6 +102,15 @@ test("non-Meta leads get Lead Source = Website", async () => {
   assert.equal(l["31fbb0788838940c7b0781ddd8d772102ba433b2"], "Google Ads");
 });
 
+test("a Pipedrive failure shows an error instead of a thank-you", async () => {
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => String(url).includes("/leads") ? new Response(JSON.stringify({ success: false, error: "bad field" }), { status: 400 }) : realFetch(url, opts);
+  const crmUrl = process.env.CRM_WEBHOOK_URL; delete process.env.CRM_WEBHOOK_URL;
+  const res = await handleLead(post("/api/lead", base));
+  process.env.CRM_WEBHOOK_URL = crmUrl; globalThis.fetch = realFetch;
+  assert.equal(res.status, 502);
+});
+
 test("bots are dropped quietly", async () => {
   calls.length = 0;
   const res = await handleLead(post("/api/lead", { ...base, hp: "http://spam" }));
