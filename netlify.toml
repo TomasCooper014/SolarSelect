@@ -4,6 +4,9 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # LEAD_TOKEN_SECRET only signs thank-you links and never appears in the site;
+  # skip it in the secrets scan so a short value cannot fail the build.
+  SECRETS_SCAN_OMIT_KEYS = "LEAD_TOKEN_SECRET"
 
 [functions]
   node_bundler = "esbuild"
