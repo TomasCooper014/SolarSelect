@@ -3,8 +3,8 @@
 export const brand = {
   name: "SolarSelect",
   short: "SolarSelect",
-  domain: "https://www.solarselect.com.au", // used for canonical links and the sitemap; change if you register a different domain
-  email: "hello@solarselect.com.au",
+  domain: "https://solarselect.au", // used for canonical links and the sitemap; change if you register a different domain
+  email: "hello@solarselect.au",
   phone: "1300 000 000",
   abn: "00 000 000 000",              // the ABN of the entity that operates the site
   legalName: "Ghost Sales Agency Pty Ltd", // shown in the privacy policy and footer; confirm this is the operating entity
