@@ -49,7 +49,7 @@ function layout({ path, title, description, body, landing = false, noindex = fal
     <div><h3>Calculators</h3><ul><li><a href="${L("tools/stc-calculator/")}">STC rebate calculator</a></li><li><a href="${L("tools/battery-rebate-calculator/")}">Battery rebate calculator</a></li><li><a href="${L("tools/solar-savings-calculator/")}">Solar savings calculator</a></li></ul></div>
     <div><h3>Guides</h3><ul>${guides.map((g) => `<li><a href="${L("guides/" + g.slug + "/")}">${esc(g.short)}</a></li>`).join("")}</ul></div>`}
     <div><h3>${esc(brand.name)}</h3><ul><li><a href="${L("the-standard/")}">The Solar Standard checklist</a></li><li><a href="${L("how-it-works/")}">How it works and how we're paid</a></li><li><a href="${L("privacy/")}">Privacy policy</a></li><li><a href="${L("collection-statement/")}">Collection statement</a></li><li><a href="${L("terms/")}">Terms of use</a></li><li>${esc(brand.email)}</li></ul></div>
-    <div class="foot-legal"><span>${esc(brand.name)} is operated by ${esc(brand.legalName)}, ABN ${esc(brand.abn)}. We are a marketing service, not a solar retailer or installer. Quotes and installations are provided by our installation partner, ${esc(brand.partner)}, which pays us when customers we introduce go ahead.</span><span>The Solar Standard is a private business. It is not a government body and is not affiliated with or endorsed by Standards Australia. References to AS/NZS standards describe the requirements our installation partner commits to.</span><span>Rebate figures are estimates as at ${R.asAt}. Your installer confirms the exact amount after assessing your home.</span></div>
+    <div class="foot-legal"><span>${esc(brand.name)} is operated by ${esc(brand.legalName)}, ABN ${esc(brand.abn)}. We are a marketing service, not a solar retailer or installer. Quotes and installations are provided by our installation partner, named in our collection statement, which pays us when customers we introduce go ahead.</span><span>The Solar Standard is a private business. It is not a government body and is not affiliated with or endorsed by Standards Australia. References to AS/NZS standards describe the requirements our installation partner commits to.</span><span>Rebate figures are estimates as at ${R.asAt}. Your installer confirms the exact amount after assessing your home.</span></div>
   </div></footer>`;
   return `<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
@@ -101,11 +101,11 @@ page("", (L) => layout({
   body: `<section class="hero"><div class="wrap"><div class="hero-copy">
     ${countdown}
     <h1>Hold your solar quote to a higher standard</h1>
-    <p class="lead">See your federal and state rebates worked out for your postcode in about 60 seconds. Then our installation partner, ${esc(brand.partner)}, gives you a free, itemised written quote to The Solar Standard.</p>
+    <p class="lead">See your federal and state rebates worked out for your postcode in about 60 seconds. Then our installation partner gives you a free, itemised written quote to The Solar Standard.</p>
     ${trust}</div>${quizCard()}</div></section>
   <section class="section band"><div class="wrap"><div class="section-head"><p class="eyebrow">How it works</p><h2>Three steps, one phone call</h2></div>
     <ol class="steps"><li><h3>Check your rebate</h3><p class="muted">We work out your STC zone from your postcode and estimate the federal and state rebates on a system sized for your bill.</p></li>
-    <li><h3>One company calls you</h3><p class="muted">Your details go to ${esc(brand.partner)}, our installation partner. Not three companies, not five.</p></li>
+    <li><h3>One company calls you</h3><p class="muted">Your details go to our installation partner. Not three companies, not five.</p></li>
     <li><h3>Get a written quote</h3><p class="muted">They call to confirm your roof and switchboard, then send a written quote with the rebates shown as line items. You decide in your own time.</p></li></ol></div></section>
   <section class="section"><div class="wrap stack-lg">
     <div class="stack"><div class="section-head"><p class="eyebrow">The Solar Standard</p><h2>Six things every solar quote should meet</h2><p class="muted">Use it on any quote, from us or anyone else.</p></div>
@@ -125,7 +125,7 @@ page("", (L) => layout({
 
 page("rebate-quiz/", (L) => layout({
   path: "rebate-quiz/", title: `Rebate Quiz | ${brand.name}`, description: "Check your solar and battery rebates in about 60 seconds, then get one free quote from an accredited local installer.",
-  body: `<section class="hero"><div class="wrap"><div class="hero-copy">${countdown}<h1>Your rebate, worked out for your postcode</h1><p class="lead">Six questions. No account. ${esc(brand.partner)} contacts you with a free written quote.</p>${trust}</div>${quizCard()}</div></section>`
+  body: `<section class="hero"><div class="wrap"><div class="hero-copy">${countdown}<h1>Your rebate, worked out for your postcode</h1><p class="lead">Six questions. No account. Our installation partner contacts you with a free written quote.</p>${trust}</div>${quizCard()}</div></section>`
 }, L));
 
 // Ad landing pages: no menu, quiz first, noindex so they don't compete with the rebate pages
@@ -143,10 +143,10 @@ for (const code of CODES) {
       ${trust}</div>${quizCard(`data-state="${code}"`)}</div></section>
     <section class="section band"><div class="wrap stack-lg">
       <div class="section-head"><h2>What happens after you finish</h2></div>
-      <ol class="steps"><li><h3>You see your estimate</h3><p class="muted">Worked out for your postcode, STC zone ${ex.zone}${code === "NT" || code === "WA" ? " in most areas" : ""}.</p></li><li><h3>${esc(brand.partner)} calls you</h3><p class="muted">Our installation partner, usually within one business day.</p></li><li><h3>You get a written quote</h3><p class="muted">With every rebate shown as its own line. No obligation.</p></li></ol>
+      <ol class="steps"><li><h3>You see your estimate</h3><p class="muted">Worked out for your postcode, STC zone ${ex.zone}${code === "NT" || code === "WA" ? " in most areas" : ""}.</p></li><li><h3>Our installation partner calls</h3><p class="muted">Usually within one business day.</p></li><li><h3>You get a written quote</h3><p class="muted">With every rebate shown as its own line. No obligation.</p></li></ol>
       <div class="callout"><b>${esc(extra.title)}.</b> ${esc(extra.body)}</div>
       <div class="faq">${landingFaq(code).map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("")}</div>
-      <p class="notice">${esc(brand.name)} is a marketing service operated by ${esc(brand.legalName)}. Quotes come from our installation partner, ${esc(brand.partner)}, which pays us when customers we introduce go ahead. Rebate figures are estimates as at ${R.asAt}.</p>
+      <p class="notice">${esc(brand.name)} is a marketing service operated by ${esc(brand.legalName)}. Quotes come from our installation partner, which pays us when customers we introduce go ahead. Rebate figures are estimates as at ${R.asAt}.</p>
     </div></section>`
   }, L));
 }
@@ -154,9 +154,9 @@ function landingFaq(code) {
   return [
     ["Is this a government website?", `No. ${brand.name} is a private marketing service. The rebates are real government programs, and your installer applies them to your quote as a discount.`],
     ["Do I have to apply for the rebate myself?", "No. The federal solar and battery rebates come off the installer's price as a point-of-sale discount. State rebates such as Solar Homes in Victoria have their own application, which the installer helps with."],
-    ["How many companies will call me?", `One. Your details go only to ${brand.partner}, our installation partner.`],
+    ["How many companies will call me?", `One. Your details go only to our installation partner.`],
     ["Does the battery rebate end on 1 January?", "No. It steps down on 1 January 2027 and keeps stepping down every six months until it ends in 2030. What counts is when the battery is installed, not when you sign."],
-    ["How do you make money?", `${brand.partner} pays us when a customer we introduce goes ahead. You don't pay us anything, and the quote is free.`]
+    ["How do you make money?", `Our installation partner pays us when a customer we introduce goes ahead. You don't pay us anything, and the quote is free.`]
   ];
 }
 
@@ -204,7 +204,7 @@ page("tools/", (L) => layout({
   <div class="tiles"><a class="tile" href="${L("tools/stc-calculator/")}"><h3>STC rebate calculator</h3><p class="muted small">Postcode, system size, install year.</p></a><a class="tile" href="${L("tools/battery-rebate-calculator/")}"><h3>Battery rebate calculator</h3><p class="muted small">Federal tiers plus WA's scheme.</p></a><a class="tile" href="${L("tools/solar-savings-calculator/")}"><h3>Solar savings calculator</h3><p class="muted small">Savings and payback from your bill.</p></a></div></div>`
 }, L));
 
-const calcCta = (L) => `<div class="callout">Want this checked against your actual roof? <a href="${L("rebate-quiz/")}">Get a free quote</a> from ${esc(brand.partner)}.</div>`;
+const calcCta = (L) => `<div class="callout">Want this checked against your actual roof? <a href="${L("rebate-quiz/")}">Get a free quote</a> from our installation partner.</div>`;
 
 page("tools/stc-calculator/", (L) => layout({
   path: "tools/stc-calculator/", title: `STC Rebate Calculator | ${brand.name}`, description: "Work out how many STCs your solar system creates and what they're worth, by postcode and system size.",
@@ -276,10 +276,10 @@ page("the-standard/", (L) => layout({
   body: `<div class="wrap"><div class="article"><div class="article-body">
     <p class="crumbs"><a href="${L("")}">Home</a> / The Standard</p>
     <h1>The Solar Standard</h1>
-    <p class="lead-sm">Six things every solar and battery quote should meet. It's the standard our installation partner, ${esc(brand.partner)}, quotes and installs to, and you can use it on any quote you get.</p>
+    <p class="lead-sm">Six things every solar and battery quote should meet. It's the standard our installation partner quotes and installs to, and you can use it on any quote you get.</p>
     <ol class="std-full">${STANDARD.map((x) => `<li><h2>${esc(x.title)}</h2><p><b>${esc(x.short)}</b></p><p class="muted">${esc(x.body)}</p></li>`).join("")}</ol>
     <h2>How we use it</h2>
-    <p>Every quote from this site comes from ${esc(brand.partner)}, our installation partner. ${esc(brand.partner)} has committed to quote and install to this standard. If you think a quote or installation hasn't met it, tell us at ${esc(brand.email)} and we'll take it up with them.</p>
+    <p>Every quote from this site comes from our installation partner, which has committed to quote and install to this standard. If you think a quote or installation hasn't met it, tell us at ${esc(brand.email)} and we'll take it up with them.</p>
     <div class="callout">The Solar Standard is our own checklist. It isn't an Australian Standard, a government scheme or a certification. The AS/NZS standards named above are published by Standards Australia; we refer to them so you know what to ask for.</div>
   </div><aside class="article-aside"><p class="eyebrow">Your rebate</p>${quizCard()}</aside></div></div>`
 }, L));
@@ -288,13 +288,13 @@ page("how-it-works/", (L) => layout({
   path: "how-it-works/", title: `How ${brand.name} Works`, description: `How ${brand.name} works, who quotes you, and how we're paid.`,
   body: `<div class="wrap"><div class="article"><div class="article-body">
     <h1>How it works and how we're paid</h1>
-    <p>${esc(brand.name)} is a solar marketing service. We publish rebate guides and calculators, and when a homeowner asks for a quote we pass their enquiry to our installation partner, ${esc(brand.partner)}, for a free written quote.</p>
+    <p>${esc(brand.name)} is a solar marketing service. We publish rebate guides and calculators, and when a homeowner asks for a quote we pass their enquiry to our installation partner for a free written quote.</p>
     <h2>What happens to your details</h2>
-    <ol><li>You answer the quiz and see your rebate estimate.</li><li>Your name, contact details, address and quiz answers go to ${esc(brand.partner)}, our installation partner.</li><li>${esc(brand.partner)} calls you, usually within one business day, and gives you a free written quote.</li><li>We may call or email you afterwards to check how it went.</li></ol>
+    <ol><li>You answer the quiz and see your rebate estimate.</li><li>Your name, contact details, address and quiz answers go to our installation partner.</li><li>They call you, usually within one business day, and gives you a free written quote.</li><li>We may call or email you afterwards to check how it went.</li></ol>
     <h2>How we're paid</h2>
-    <p>${esc(brand.partner)} pays us when a customer we introduce goes ahead with an installation. You never pay us. Your details go only to ${esc(brand.partner)}, so they are not sold to several companies.</p>
+    <p>Our installation partner pays us when a customer we introduce goes ahead with an installation. You never pay us. Your details go only to them, so they are not sold to several companies.</p>
     <h2>Who we work with</h2>
-    <p>Quotes and installations are provided by ${esc(brand.partner)}, which has committed to <a href="${L("the-standard/")}">The Solar Standard</a>: SAA-accredited installers, products on the Clean Energy Council approved lists, installation to the relevant AS/NZS standards, and itemised written quotes. Your contract is with ${esc(brand.partner)}, not with us.</p>
+    <p>Quotes and installations are provided by our installation partner, which has committed to <a href="${L("the-standard/")}">The Solar Standard</a>: SAA-accredited installers, products on the Clean Energy Council approved lists, installation to the relevant AS/NZS standards, and itemised written quotes. Your contract is with them, not with us. You'll know who they are as soon as you submit your details, and they're named in our <a href="${L("collection-statement/")}">collection statement</a>.</p>
     <h2>Your choice</h2><p>A quote is free and doesn't commit you to anything. You're welcome to get other quotes too.</p>
   </div><aside class="article-aside">${quizCard()}</aside></div></div>`
 }, L));
@@ -304,7 +304,8 @@ page("thank-you/", (L) => layout({
   body: `<div class="wrap"><div class="article"><div class="article-body">
     <h1>Thanks<span id="ty-name"></span>. Your enquiry is in.</h1>
     <p hidden>Estimated rebates: <b class="mono" id="ty-total"></b></p>
-    <p>${esc(brand.partner)}, our installation partner, will call you, usually within one business day. We've emailed you a copy of your estimate.</p>
+    <p class="lead-sm">Your free quote is coming from <b>${esc(brand.partner)}</b>, our installation partner.</p>
+    <p>They'll call you, usually within one business day, to confirm a few details and book your quote. We've emailed you a copy of your estimate. ${esc(brand.partner)} pays us if you go ahead with an installation; the quote is free and you're under no obligation.</p>
     <h2>Save time on the call</h2><p class="muted">These help the installer quote accurately. All optional.</p>
     <form id="followup" class="stack" novalidate>
       <div class="grid-2"><div class="field"><label for="t-roof">Roof</label><select id="t-roof" name="roof"><option value="">Choose</option><option value="tin">Tin / Colorbond</option><option value="tile">Tile</option><option value="flat">Flat or low pitch</option><option value="other">Something else / not sure</option></select></div>

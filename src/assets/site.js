@@ -157,18 +157,18 @@
       '<div class="receipt" aria-label="Rebate estimate"><div class="receipt-head"><span>' + d.postcode + " · " + R.states[est.state] + '</span><span>As at ' + R.asAt + "</span></div>" + rows +
       '<div class="receipt-total"><span><b>Estimated total</b></span><span class="amt">' + R.money(est.total) + "</span></div>" +
       '<p class="receipt-foot">Based on a typical ' + (d.product === "battery" ? est.size.kwh + " kWh battery" : d.product === "solar" ? est.size.kw + " kW system" : est.size.kw + " kW system and " + est.size.kwh + " kWh battery") + ' for your bill, installed before 1 January 2027. Your installer confirms the exact figure.</p></div>' +
-      '<p><b>Where should we send it?</b> We\'ll pass your details to ' + (SITE.partner || 'our installation partner') + ', our installation partner, for a free written quote.</p>' +
+      '<p><b>Where should we send it?</b> We\'ll pass your details to our installation partner for a free written quote. You\'ll see who they are as soon as you submit.</p>' +
       '<form class="stack" id="lead-form" novalidate>' +
       '<div class="grid-2">' + field("firstName", "First name", "given-name") + field("lastName", "Last name", "family-name") + "</div>" +
       '<div class="grid-2">' + field("mobile", "Mobile", "tel", "tel", "04") + field("email", "Email", "email", "email") + "</div>" +
       field("street", "Street address", "address-line1") +
       '<div class="grid-2">' + field("suburb", "Suburb", "address-level2") + '<div class="field"><label for="f-postcode">Postcode</label><input id="f-postcode" value="' + d.postcode + '" readonly></div></div>' +
       '<label class="hp" aria-hidden="true">Leave this empty<input name="hp" tabindex="-1" autocomplete="off"></label>' +
-      '<label class="check"><input type="checkbox" id="f-consent" name="consent"><span>I agree to ' + (SITE.brand || "this site") + ' passing my details to its installation partner, ' + (SITE.partner || 'our installation partner') + ', and to both contacting me by phone, SMS and email about my quote, even if my number is on the Do Not Call Register. See the <a href="' + link("collection-statement/") + '" target="_blank" rel="noopener">collection statement</a>.</span></label>' +
+      '<label class="check"><input type="checkbox" id="f-consent" name="consent"><span>I agree to ' + (SITE.brand || "this site") + ' passing my details to its installation partner, named in the collection statement, and to both contacting me by phone, SMS and email about my quote, even if my number is on the Do Not Call Register. See the <a href="' + link("collection-statement/") + '" target="_blank" rel="noopener">collection statement</a>.</span></label>' +
       '<div class="err small" id="f-consent-err" role="alert" style="color:var(--danger)"></div>' +
       '<div class="formerror" id="f-error" role="alert" hidden></div>' +
       '<button class="btn" type="submit" id="f-submit">Get my free quote</button>' +
-      '<p class="small muted">Only ' + (SITE.partner || 'our installation partner') + ' contacts you. We don\'t pass your details to anyone else.</p></form>' +
+      '<p class="small muted">Only our installation partner contacts you. We don\'t pass your details to anyone else.</p></form>' +
       '<div class="quiz-nav"><button type="button" class="linkish" data-back>Back</button><span></span></div>';
     this.root.appendChild(wrap);
     if (focus) $("h2", this.root).focus({ preventScroll: true });

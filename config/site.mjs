@@ -9,7 +9,7 @@ export const brand = {
   partner: "XF Energy",                // the installation partner that quotes every enquiry
   abn: "84 683 749 153",               // TMC Innovations
   legalName: "TMC Innovations Pty Ltd",
-  tagline: "See your solar and battery rebate, then get a free written quote from XF Energy, our installation partner.",
+  tagline: "See your solar and battery rebate, then get a free, itemised written quote from an accredited installation partner.",
   metaPixelId: "",                    // e.g. "1234567890"; leave empty to turn the pixel off
   googleTagId: ""                     // e.g. "G-XXXXXXX" or "AW-XXXXXXX"
 };
