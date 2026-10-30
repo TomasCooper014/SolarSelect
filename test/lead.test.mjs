@@ -133,7 +133,8 @@ test("helpers", () => {
   assert.equal(cleanMobile("02 9999 9999"), null);
   assert.equal(channelOf({ gclid: "x" }), "Google Ads");
   assert.equal(channelOf({ referrer: "https://www.google.com/" }), "Organic search");
-  assert.equal(channelOf({ ref: "sunnysideblog" }), "Affiliate: sunnysideblog");
+  assert.equal(channelOf({ aff: "sunnysideblog" }), "Affiliate: sunnysideblog");
+  assert.equal(channelOf({ ref: "d64a0095-5517-4738-ac69-2fc955faf899" }), "Direct");
   assert.equal(channelOf({}), "Direct");
   assert.equal(grade({ ownership: "owner-occupier", bill: "lt300", timeframe: "researching" }), "C");
   assert.equal(routeFor("3000").id, "unassigned");

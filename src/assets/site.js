@@ -17,7 +17,7 @@
   function cookie(n) { var m = document.cookie.match(new RegExp("(?:^|; )" + n + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : ""; }
   var attribution = (function () {
     var p = new URLSearchParams(location.search);
-    var keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid", "ref"];
+    var keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid", "aff"];
     var now = {};
     keys.forEach(function (k) { if (p.get(k)) now[k] = p.get(k); });
     var saved = get("attr") || {};
@@ -35,7 +35,7 @@
     return a;
   }
   // Keep campaign tags on internal links so the landing page to quiz hop doesn't lose them
-  if (location.search && /utm_|gclid|fbclid|ref=/.test(location.search)) {
+  if (location.search && /utm_|gclid|fbclid|aff=/.test(location.search)) {
     $$("a[data-keep-tags]").forEach(function (a) { a.href += (a.href.indexOf("?") > -1 ? "&" : "?") + location.search.slice(1); });
   }
 

@@ -67,7 +67,7 @@ export function validate(body) {
 
 function sanitiseAttribution(a) {
   const src = a && typeof a === "object" ? a : {};
-  const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid", "ref", "referrer", "landing", "fbp", "fbc", "firstSeen"];
+  const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid", "aff", "referrer", "landing", "fbp", "fbc", "firstSeen"];
   const out = {};
   for (const k of keys) if (src[k]) out[k] = String(src[k]).slice(0, 300);
   return out;
@@ -78,7 +78,8 @@ export function channelOf(a = {}) {
   const src = (a.utm_source || "").toLowerCase();
   const med = (a.utm_medium || "").toLowerCase();
   const paid = /cpc|ppc|paid|ads?$|display|social-paid|paid-social/.test(med);
-  if (a.ref) return "Affiliate: " + a.ref;
+  // Affiliates get links ending ?aff=theirname. Other sites add their own ?ref=, which is ignored.
+  if (a.aff && /^[a-z0-9_-]{2,40}$/i.test(a.aff)) return "Affiliate: " + a.aff;
   if (a.gclid || (/google/.test(src) && paid)) return "Google Ads";
   if (a.fbclid && !src) return "Meta Ads";
   if (/facebook|instagram|meta|fb|ig/.test(src)) return paid || a.fbclid ? "Meta Ads" : "Organic social";

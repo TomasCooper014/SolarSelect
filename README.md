@@ -56,7 +56,7 @@ Every lead carries a channel: `Meta Ads`, `Google Ads`, `Organic search`, `Organ
 
 - Meta ad URL parameters: `utm_source=facebook&utm_medium=paid-social&utm_campaign={{campaign.name}}&utm_term={{adset.name}}&utm_content={{ad.name}}`
 - Google Ads: auto-tagging on (gclid), plus `utm_campaign` if you want campaign names in the note.
-- Affiliates and referrers: give them a link ending `?ref=theirname`.
+- Affiliates and referrers: give them a link ending `?aff=theirname`.
 
 The channel lands in Pipedrive's existing **Ad source** field and the ad names in **Campaign**,
 **Ad set name** and **Ad name**, the same fields your Meta leads already use, so one Pipedrive filter
