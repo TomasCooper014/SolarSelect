@@ -6,8 +6,8 @@ export const brand = {
   domain: "https://thesolarstandard.com.au", // canonical links and sitemap
   email: "hello@thesolarstandard.com.au",
   phone: "1300 000 000",
-  abn: "00 000 000 000",              // the ABN of the entity that operates the site
-  legalName: "Ghost Sales Agency Pty Ltd", // shown in the privacy policy and footer; confirm this is the operating entity
+  abn: "84 683 749 153",               // TMC Innovations
+  legalName: "TMC Innovations",       // confirm the exact name on the ABN register (e.g. add "Pty Ltd")
   tagline: "See your solar and battery rebate, then get one written quote from an installer who meets The Solar Standard.",
   metaPixelId: "",                    // e.g. "1234567890"; leave empty to turn the pixel off
   googleTagId: ""                     // e.g. "G-XXXXXXX" or "AW-XXXXXXX"
