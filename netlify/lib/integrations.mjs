@@ -106,10 +106,10 @@ export async function sendConfirmation(lead, meta) {
   const lines = lead.estimateLines.map((l) => `<tr><td style="padding:6px 0">${esc(l.label)}</td><td style="padding:6px 0;text-align:right;font-family:monospace">$${Math.round(l.amount).toLocaleString("en-AU")}</td></tr>`).join("");
   const html = `<div style="font-family:Arial,sans-serif;max-width:560px;color:#14262c;line-height:1.5">
   <h2 style="margin:0 0 12px">Thanks ${esc(lead.firstName)}, your rebate estimate is in</h2>
-  <p>We've matched your enquiry to one accredited installer that covers ${esc(lead.suburb)}. They'll call you from an Australian number, usually within one business day, to confirm a few details and book a free, no-obligation quote.</p>
+  <p>We've passed your enquiry to our installation partner, ${esc(env("PARTNER_NAME") || "XF Energy")}. They'll call you from an Australian number, usually within one business day, to confirm a few details and book a free, no-obligation quote.</p>
   <table style="width:100%;border-collapse:collapse;border-top:1px solid #cfd8d6;border-bottom:1px solid #cfd8d6;margin:16px 0">${lines}
   <tr><td style="padding:8px 0;font-weight:bold">Estimated rebates</td><td style="padding:8px 0;text-align:right;font-weight:bold;font-family:monospace">$${Math.round(lead.estimateTotal).toLocaleString("en-AU")}</td></tr></table>
-  <p style="font-size:13px;color:#4d6166">This is an estimate for a typical ${lead.product === "battery" ? "battery" : lead.product === "solar" ? "solar" : "solar and battery"} system on your bill. Your installer confirms the exact rebate after looking at your roof and switchboard.</p>
+  <p style="font-size:13px;color:#4d6166">This is an estimate for a typical ${lead.product === "battery" ? "battery" : lead.product === "solar" ? "solar" : "solar and battery"} system on your bill. They confirm the exact rebate after looking at your roof and switchboard.</p>
   <p>On the call they'll go through:</p>
   <ul><li>The right system size for your bill</li><li>Your rebates and what they come off</li><li>Whether a battery makes sense for you now</li></ul>
   <p>Questions before then? Reply to this email.</p>

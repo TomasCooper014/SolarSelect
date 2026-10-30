@@ -60,7 +60,7 @@ export function validate(body) {
   if (!OWNERSHIP[lead.ownership]) errors.ownership = "Tell us whether you own the home.";
   if (!BILLS[lead.bill]) errors.bill = "Choose your quarterly bill.";
   if (!TIMEFRAMES[lead.timeframe]) errors.timeframe = "Choose when you want to install.";
-  if (!lead.consent) errors.consent = "Tick the box so we can pass your details to one installer.";
+  if (!lead.consent) errors.consent = "Tick the box so we can pass your details to our installation partner.";
 
   return { lead, errors, ok: Object.keys(errors).length === 0 };
 }

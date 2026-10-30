@@ -5,10 +5,11 @@ export const brand = {
   short: "Solar Standard",
   domain: "https://thesolarstandard.com.au", // canonical links and sitemap
   email: "hello@thesolarstandard.com.au",
-  phone: "1300 000 000",
+  phone: "0458 307 697",
+  partner: "XF Energy",                // the installation partner that quotes every enquiry
   abn: "84 683 749 153",               // TMC Innovations
-  legalName: "TMC Innovations",       // confirm the exact name on the ABN register (e.g. add "Pty Ltd")
-  tagline: "See your solar and battery rebate, then get one written quote from an installer who meets The Solar Standard.",
+  legalName: "TMC Innovations Pty Ltd",
+  tagline: "See your solar and battery rebate, then get a free written quote from XF Energy, our installation partner.",
   metaPixelId: "",                    // e.g. "1234567890"; leave empty to turn the pixel off
   googleTagId: ""                     // e.g. "G-XXXXXXX" or "AW-XXXXXXX"
 };
